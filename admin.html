@@ -3,164 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Makatib e Yaqoob (Rh)</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>School Admin Portal</title>
     <style>
-        body {
-            background-color: #f4f7f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .madrasa-header {
-            background-color: #004d26; /* Deep Islamic Green */
-            color: #fff;
-            padding: 20px;
-            border-bottom: 5px solid #d4af37; /* Gold Border */
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .stat-card {
-            border: none;
-            border-left: 5px solid #d4af37;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            background: white;
-            transition: 0.3s;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        .card-header-theme {
-            background-color: #006633;
-            color: white;
-            font-weight: 600;
-        }
-        .btn-custom {
-            background-color: #004d26;
-            color: white;
-            border: 1px solid #d4af37;
-        }
-        .btn-custom:hover {
-            background-color: #d4af37;
-            color: #004d26;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .box { background: white; padding: 20px; border-radius: 10px; width: 400px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2 { color: #333; text-align: center; }
+        input, textarea { width: 90%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { width: 95%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; font-weight: bold; }
+        button.remove { background-color: #dc3545; width: 100%; margin-top: 5px; }
+        .list-item { border-bottom: 1px solid #eee; padding: 10px 0; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <div class="container mb-4">
-        <div class="madrasa-header">
-            <h1>Makatib e Yaqoob (Rh) /مکاتب یعقوبؒ</h1>
-            <p class="mb-0">Melvisharam | Admin Management Dashboard</p>
-        </div>
-    </div>
+    <h1 style="text-align: center; color: #333;">School Admin Management</h1>
 
     <div class="container">
-        <!-- Stats Row -->
-        <div class="row text-center mb-4">
-            <div class="col-md-4 mb-3">
-                <div class="stat-card p-3">
-                    <h5 class="text-muted"> (Total Students)</h5>
-                    <h2 class="text-success fw-bold">120</h2>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="stat-card p-3">
-                    <h5 class="text-muted"> (Total Teachers)</h5>
-                    <h2 class="text-success fw-bold">6</h2>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="stat-card p-3">
-                    <h5 class="text-muted"> (Today's Attendance)</h5>
-                    <h2 class="text-success fw-bold">92%</h2>
-                </div>
-            </div>
+        <!-- Student Section -->
+        <div class="box">
+            <h2>Students Detail</h2>
+            <input type="text" id="sName" placeholder="Student Name">
+            <input type="date" id="sDob">
+            <input type="text" id="sFather" placeholder="Father Name">
+            <textarea id="sAddress" placeholder="Address"></textarea>
+            <input type="number" id="sMobile" placeholder="Mobile Number">
+            <button onclick="addStudent()">Add Student</button>
+            <div id="studentList"></div>
         </div>
 
-        <div class="row">
-            <!-- Left Side: Forms to Add New Members -->
-            <div class="col-md-4 mb-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header card-header-theme"> (Add Student)</div>
-                    <div class="card-body">
-                        <form>
-                            <div class="mb-2">
-                                <label class="form-label mb-0">Student Name</label>
-                                <input type="text" class="form-control form-control-sm" required>
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label mb-0">Select Class</label>
-                                <select class="form-select form-select-sm">
-                                    <option>Hifz Class - A</option>
-                                    <option>Nazra Class - B</option>
-                                    <option>Deenyat Class</option>
-                                </select>
-                            </div>
-                            <button type="button" class="btn btn-custom btn-sm w-100 mt-2" onclick="alert('Student Added!')">Add Student</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm">
-                    <div class="card-header card-header-theme"> (Add Teacher)</div>
-                    <div class="card-body">
-                        <form>
-                            <div class="mb-2">
-                                <label class="form-label mb-0">Teacher Name</label>
-                                <input type="text" class="form-control form-control-sm" required>
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label mb-0">Assigned Class</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="e.g. Hifz Class" required>
-                            </div>
-                            <button type="button" class="btn btn-custom btn-sm w-100 mt-2" onclick="alert('Teacher Added!')">Add Teacher</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Side: Teacher Profiles & Overview -->
-            <div class="col-md-8 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-header card-header-theme"> (Teacher Profiles & Classes)</div>
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover align-middle">
-                            <thead class="table-dark" style="background-color: #004d26 !important;">
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Teacher Name</th>
-                                    <th>Assigned Class</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td><strong>Maulana Md Nadeem Sahib</strong></td>
-                                    <td>Hifz Class - A</td>
-                                    <td><span class="badge bg-success">Active</span></td>
-                                    <td><button class="btn btn-sm btn-outline-danger py-0">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><strong>Maulana Asrar Ahmed Sahib</strong></td>
-                                    <td>Nazra Class - B</td>
-                                    <td><span class="badge bg-success">Active</span></td>
-                                    <td><button class="btn btn-sm btn-outline-danger py-0">Remove</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <!-- Teacher Section -->
+        <div class="box">
+            <h2>Teachers Detail</h2>
+            <input type="text" id="tName" placeholder="Teacher Name">
+            <input type="text" id="tQual" placeholder="Qualification">
+            <input type="text" id="tExp" placeholder="Experience">
+            <textarea id="tAddress" placeholder="Address"></textarea>
+            <input type="number" id="tMobile" placeholder="Phone Number">
+            <button onclick="addTeacher()">Add Teacher</button>
+            <div id="teacherList"></div>
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Data Load karne ke liye
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        let teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+
+        function updateUI() {
+            // Students ki list dikhane ke liye
+            document.getElementById('studentList').innerHTML = students.map((s, i) => `
+                <div class="list-item">
+                    <strong>Name: ${s.name}</strong><br> 
+                    DOB: ${s.dob} | Father: ${s.father} <br> 
+                    Address: ${s.address} | Mob: ${s.mobile}
+                    <button class="remove" onclick="removeStudent(${i})">Remove</button>
+                </div>`).join('');
+
+            // Teachers ki list dikhane ke liye
+            document.getElementById('teacherList').innerHTML = teachers.map((t, i) => `
+                <div class="list-item">
+                    <strong>Name: ${t.name}</strong><br> 
+                    Qual: ${t.qual} | Exp: ${t.exp} <br> 
+                    Address: ${t.address} | Ph: ${t.mobile}
+                    <button class="remove" onclick="removeTeacher(${i})">Remove</button>
+                </div>`).join('');
+        }
+
+        // Student Add karne ka function
+        function addStudent() {
+            const name = document.getElementById('sName').value;
+            const dob = document.getElementById('sDob').value;
+            const father = document.getElementById('sFather').value;
+            const address = document.getElementById('sAddress').value;
+            const mobile = document.getElementById('sMobile').value;
+
+            if(name && dob && father && address && mobile) {
+                students.push({ name, dob, father, address, mobile });
+                localStorage.setItem('students', JSON.stringify(students));
+                updateUI();
+                // Form clear karne ke liye
+                document.getElementById('sName').value = '';
+                document.getElementById('sDob').value = '';
+                document.getElementById('sFather').value = '';
+                document.getElementById('sAddress').value = '';
+                document.getElementById('sMobile').value = '';
+            } else {
+                alert("Please fill all student fields!");
+            }
+        }
+
+        // Teacher Add karne ka function
+        function addTeacher() {
+            const name = document.getElementById('tName').value;
+            const qual = document.getElementById('tQual').value;
+            const exp = document.getElementById('tExp').value;
+            const address = document.getElementById('tAddress').value;
+            const mobile = document.getElementById('tMobile').value;
+
+            if(name && qual && exp && address && mobile) {
+                teachers.push({ name, qual, exp, address, mobile });
+                localStorage.setItem('teachers', JSON.stringify(teachers));
+                updateUI();
+                // Form clear karne ke liye
+                document.getElementById('tName').value = '';
+                document.getElementById('tQual').value = '';
+                document.getElementById('tExp').value = '';
+                document.getElementById('tAddress').value = '';
+                document.getElementById('tMobile').value = '';
+            } else {
+                alert("Please fill all teacher fields!");
+            }
+        }
+
+        // Remove karne ke functions
+        function removeStudent(i) { 
+            students.splice(i, 1); 
+            localStorage.setItem('students', JSON.stringify(students)); 
+            updateUI(); 
+        }
+        
+        function removeTeacher(i) { 
+            teachers.splice(i, 1); 
+            localStorage.setItem('teachers', JSON.stringify(teachers)); 
+            updateUI(); 
+        }
+
+        // Page load hote hi purana data dikhane ke liye
+        updateUI();
+    </script>
 </body>
 </html>
