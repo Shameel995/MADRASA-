@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Makatib e Yaqoob (Rh)</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            background: white;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+        }
+        .login-header {
+            background-color: #004d26; /* Deep Islamic Green */
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid #d4af37; /* Gold Border */
+        }
+        .login-header h2 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .btn-login {
+            background-color: #004d26;
+            color: white;
+            border: 2px solid #d4af37;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .btn-login:hover {
+            background-color: #d4af37;
+            color: #004d26;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <!-- Header -->
+        <div class="login-header">
+            <h2>Makatib e Yaqoob (Rh)</h2>
+            <h5 class="mb-0">مکاتب یعقوبؒ</h5>
+            <small class="text-white-50">Melvisharam</small>
+        </div>
+        
+        <!-- Form Body -->
+        <div class="card-body p-4">
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="roleSelect" class="form-label fw-semibold"> (Login As)</label>
+                    <select class="form-select" id="roleSelect" required>
+                        <option value="" disabled selected>Chunein...</option>
+                        <option value="admin"> admin /(Admin)</option>
+                        <option value="teacher"> (Teacher)</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="passwordInput" class="form-label fw-semibold"> (Password)</label>
+                    <input type="password" class="form-control" id="passwordInput" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-login"> (Login)</button>
+                
+                <div id="errorMessage" class="text-danger text-center mt-3 fw-semibold" style="display: none;">
+                    Galat Password! Dubara koshish karein.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Simple JavaScript for Navigation -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Form ko auto-reload hone se rokne ke liye
+            
+            const role = document.getElementById('roleSelect').value;
+            const password = document.getElementById('passwordInput').value;
+            const errorDiv = document.getElementById('errorMessage');
+
+            errorDiv.style.display = 'none';
+
+            // Simple Password Checking (Testing ke liye)
+            if (role === 'admin' && password === '1234') {
+                window.location.href = 'admin.html'; // Admin page par bhejega
+            } else if (role === 'teacher' && password === '5678') {
+                window.location.href = 'teacher.html'; // Teacher page par bhejega
+            } else {
+                errorDiv.style.display = 'block'; // Error dikhayega
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
